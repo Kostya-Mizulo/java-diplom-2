@@ -31,7 +31,7 @@ public class UserAuthorizationTest {
 
     @After
     public void cleanUp(){
-        if (response.jsonPath().getBoolean("success")==true) {
+        if (response.jsonPath().getBoolean("success")) {
             String authorization = response.jsonPath().getString("accessToken");
             authApi.deleteUser(authorization);
         } else {
@@ -52,7 +52,7 @@ public class UserAuthorizationTest {
                 .and()
                 .body("success", is(true));
 
-        if (response.jsonPath().getBoolean("success") == true) responseRegister = response;
+        if (response.jsonPath().getBoolean("success")) responseRegister = response;
     }
 
 

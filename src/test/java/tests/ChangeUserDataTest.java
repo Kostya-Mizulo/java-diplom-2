@@ -19,8 +19,6 @@ import static org.hamcrest.core.Is.is;
 public class ChangeUserDataTest {
     public static final String UNAUTHORIZED_MESSAGE = "You should be authorised";
     public static final String FORBIDDEN_MESSAGE = "User with such email already exists";
-    private String userNameInitial;
-    private String userEmailInitial;
     private String accessToken;
     AuthApi authApi;
 
@@ -29,8 +27,6 @@ public class ChangeUserDataTest {
     public void setup(){
         authApi = new AuthApi();
         UserRegistrationModel userRegistrationModel = UserRegistrationModel.generateUser();
-        userNameInitial = userRegistrationModel.getName();
-        userEmailInitial = userRegistrationModel.getEmail();
         authApi.registerUser(userRegistrationModel);
         Response loginResponse = authApi.loginUser(new UserLoginModel(userRegistrationModel));
         accessToken = loginResponse.jsonPath().getString("accessToken");
